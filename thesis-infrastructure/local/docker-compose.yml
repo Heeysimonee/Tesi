@@ -1,0 +1,67 @@
+version: '3.7'
+
+volumes:
+  database-data:
+    driver: local
+    name: hapi-skeleton_database-data
+networks: 
+  application: 
+    driver: bridge
+
+services:
+
+## Backend ##############################################
+    thesis-backend:
+        image: thesis-backend
+        build:
+            context: ../../thesis-backend
+            dockerfile: docker/Dockerfile
+            target: local_dev
+        environment:
+            NODE_ENV: development
+            LOG_LEVEL: debug
+            LOG_PRETTY_PRINT: "true"
+            DB_SERVICE: 'thesis-database:5432'
+            DB_USER: db_user
+            DB_PASSWORD: db_pw
+            DB_NAME: db
+        volumes:
+        - ../../thesis-backend:/home/node/workdir
+        networks:
+          - application
+        ports:
+            - "80:8080"
+        container_name: thesis-backend
+
+## Database ##############################################
+    thesis-database:
+        image: postgres:14.4
+        volumes:
+          - database-data:/var/lib/postgresql-thesis/data/
+        environment:
+            POSTGRES_USER: db_user
+            POSTGRES_PASSWORD: db_pw
+            POSTGRES_DB: db
+        container_name: thesis-database
+        networks:
+          - application
+        ports:
+            - "5432:5432"
+
+### Frontend (vue-serve) ##################################
+    thesis-frontend:
+        image: thesis-frontend
+        build:
+            context: ../../thesis-frontend/visita
+            dockerfile: docker/Dockerfile
+            target: vue-serve
+        environment:
+          RUN_INSTALL: ${RUN_INSTALL}
+          VUE_APP_BASE_DOMAIN: ${VUE_APP_BASE_DOMAIN}
+          VUE_APP_FE_DOMAIN: ${VUE_APP_FE_DOMAIN}
+        ports:
+          - '8080:8080'
+        volumes:
+          - ../../thesis-frontend/visita:/home/node/workdir
+        networks:
+          - application

@@ -1,0 +1,54 @@
+{
+  "name": "digitiamo-hapi-skeleton",
+  "version": "0.1.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "main": "server/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start-nodemon": "nodemon --ignore logs/ --ignore test/ server/index.js",
+    "start": "node server/index.js",
+    "test-coverage": "./test.sh -r html -o test_results/coverage.html -v",
+    "test-coverage-routes": "./test.sh -r html -o test_results/coverage_routes.html -v --coverage-path /lib/routes",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hapi/bell": "^12.3.0",
+    "@hapi/boom": "^10.0.0",
+    "@hapi/bourne": "^3.0.0",
+    "@hapi/glue": "^8.0.0",
+    "@hapi/hapi": "^20.2.2",
+    "@hapi/hoek": "^10.0.1",
+    "@hapi/inert": "^7.0.0",
+    "@hapi/jwt": "^2.1.1",
+    "@hapi/vision": "^7.0.0",
+    "confidence": "^5.0.1",
+    "csv-parse": "^5.3.3",
+    "hapi-auth-jwt2": "^10.2.0",
+    "hapi-pino": "^10.1.0",
+    "hapi-swagger": "^14.5.5",
+    "haute-couture": "^3.6.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.2.0",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3",
+    "pino-pretty": "^8.1.0",
+    "schmervice": "^1.6.0",
+    "schwifty": "^5.4.1"
+  },
+  "devDependencies": {
+    "@hapi/code": "^9.0.1",
+    "@hapi/eslint-plugin": "^6.0.0",
+    "@hapi/lab": "^25.0.1",
+    "eslint": "^8.20.0",
+    "hpal": "^2.6.0",
+    "hpal-debug": "^1.5.0",
+    "nodemon": "^2.0.19",
+    "toys": "^2.3.1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "plugin:@hapi/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "no-shadow": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "max-len": ["warn", { "code": 150 }],
+    "yoda": "error",
+    "prefer-template": "error",
+    "no-useless-concat": "error",
+    "prefer-destructuring": ["warn", {
+      "array": false,
+      "object": true
+    }]
+  }
+}
