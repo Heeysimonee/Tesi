@@ -14,26 +14,41 @@
       </div>
     </div>
   </section>
+  {{structures.length}}
   <section class="travel">
+  
     <destination-card 
-    v-for="card in travelCard" 
-    :key="card.title"
-    :title="card.title"
-    :icon="card.icon"
-    :img="card.img"
+    v-for="card in structures" 
+    :key="card.name"
+    :title="card.name"
+    :description="card.description"
+    :region="card.region"
+    :stars="card.stars"
+    :icon="card.icon" 
+    :img="card.image"
     :duration="card.duration"
     :price="card.price"></destination-card>
   </section>
 </template>
 
 <script>
-// import SeaCard from '@/components/sea/SeaCard.vue'
 import DestinationCard from '@/components/UI/DestinationCard.vue'
+import route from "@/api/index";
 export default {
   components:{DestinationCard},
   name: 'HomeView',
+  async beforeCreate(){
+
+    const structures = await route.getStructureBasedOnVacation({"type": "sea"});
+    if(structures.status === 200){
+      console.log(structures.data.data.result)
+      this.structures = structures.data.data.result;
+    }
+  
+  },
   data(){
     return{
+      structures: {},
       buttonClasses: 'filter__container__btn',
       filter:[
         {name: 'Tutti', value:'all', style:'filter__container__btn-active'},
@@ -41,17 +56,17 @@ export default {
         {name: 'Prezzo', value:'price',style:'filter__container__btn'},
         {name: 'Consigliati', value:'preferred', style:'filter__container__btn'}
       ],
-      travelCard:[
-        {title: 'Baunei 1', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 2', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 3', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 4', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 5', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 6', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 7', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 8', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-        {title: 'Baunei 9', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
-      ],
+      // travelCard:[
+      //   {title: 'Baunei 1', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 2', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 3', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 4', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 5', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 6', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 7', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 8', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      //   {title: 'Baunei 9', icon: 'calendar_month', img: 'https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', duration: '10 Giorni', price: '1000,00€'},
+      // ],
     }
   },
   methods:{

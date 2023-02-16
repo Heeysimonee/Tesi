@@ -1,11 +1,11 @@
 <template>
-   <div class="card" @mouseover="seeShowMore" @mouseleave="hideShowMore">
+   <div class="card">
     <div class="card__img">
         <h1 class="card__title">{{title}}</h1>
-        <div class="more" v-if="showMore">
+        <div class="more">
             <h1>{{title}}</h1>
             <div class="more__buy">
-                <button @click="goToDetails"> <span class="material-symbols-outlined service__card__icon">shopping_bag</span>DETTAGLI</button>
+                <button @click="goToDetails" class="more__buy__btn"> <span class="material-symbols-outlined service__card__icon">shopping_bag</span>DETTAGLI</button>
             </div>
         </div>
         <img class="img" :src="img" :alt="title">
@@ -16,7 +16,7 @@
             <span class="material-symbols-outlined service__card__icon">{{icon}}</span>
             <p>{{duration}}</p>
         </div>
-        <p class="card__info__price">{{price}}</p>
+        <p class="card__info__price">{{price.toFixed(2)}}€</p>
         
     </div>
     </div>
@@ -30,6 +30,15 @@ export default {
         title:{
             type: String
         },
+        description: {
+            type: String
+        },
+        region: {
+            type: String
+        },
+        starts:{
+            type: Number
+        },
         icon:{
             type: String
         },
@@ -40,7 +49,7 @@ export default {
             type: String
         },
         price:{
-            type: String
+            type: Number
         }
     },
     data(){
@@ -49,20 +58,10 @@ export default {
         }
     },
    methods: {
-    seeShowMore(){
-            setTimeout(()=>{
-                this.showMore = true
-            }, 800)
-    },
-    hideShowMore(){
-            setTimeout(()=>{
-                this.showMore = false
-            }, 200)
-    },
+
     goToDetails(){
         console.log(this.title)
-        this.$router.push({name: 'travel',  params: {}, props: true})
-        
+        this.$router.push({name: 'travel',  params: {}, props: true})        
     }
   },
   computed: {
@@ -74,8 +73,8 @@ export default {
 .card{
     font-family: var(--font-main);
     display: flex;
-    height: 50%;
-    width: 25%;
+    height: 300px;
+    width: 400px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -99,6 +98,10 @@ export default {
     &:hover .card__info__price{
         display: none;        
     }
+    &:hover .more{
+        display: flex;
+        opacity:1
+    }
     &__title{
         width: 100%;
         text-align: center;
@@ -110,7 +113,7 @@ export default {
         font-weight: 200;
         font-size: 3.5rem;
         z-index: 999;
-        transition: all 1s ease-in-out;
+        transition: all .2s ease-in-out;
         letter-spacing: 1px;
         
       }
@@ -119,7 +122,7 @@ export default {
         top: 0;
         left: 0;
         width: 100%;
-        height: 98%;
+        height: 100%;
         background-color: #2b2b2b;
         opacity: 0.6;
         border-radius: 15px;
@@ -129,6 +132,9 @@ export default {
     &__img{
       position: relative;
       z-index: 800;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
     }
     &__info{
         display: flex;
@@ -181,6 +187,8 @@ export default {
     }
   }
   .more{
+    display: none;
+    opacity: 0;
         z-index:998;
         width: 100%;
         height: 50%;

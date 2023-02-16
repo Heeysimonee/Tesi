@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  inject:['title'],
+
 props:{
         title:{
             type: String
@@ -80,9 +80,6 @@ props:{
             type: String
         }
     },
-    created(){
-      console.log(this.title)
-    }
 }
 </script>
 

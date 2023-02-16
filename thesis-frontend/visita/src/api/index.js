@@ -8,4 +8,7 @@ export default {
   prova() {
     return instance.post(`/regions`);
   },
+  getStructureBasedOnVacation(payload){
+    return instance.post(`/structures`, payload)
+  }
 };
