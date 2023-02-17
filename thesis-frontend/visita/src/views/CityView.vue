@@ -23,7 +23,8 @@
     :icon="card.icon" 
     :img="card.image"
     :duration="card.duration"
-    :price="card.price"></destination-card>
+    :price="card.price"
+    :travel="card"></destination-card>
   </section>
     
 </template>

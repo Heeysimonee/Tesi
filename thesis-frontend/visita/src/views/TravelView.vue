@@ -2,29 +2,26 @@
 <section class="travel">
   <div class="travel__info">
     <div class="travel__info__image">
-      <img src="https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+      <img :src="travel.image" alt="">
     </div>
     <div class="travel__info__text">
       <div class="travel__info__text__title-price">
-        <h1>Baunei, {{title}}</h1>
-        <p>1000,00$</p>
+        <h1>{{travel.name}}</h1>
+        <p>{{travel.price.toFixed(2)}}€</p>
       </div>
       <div class="travel__info__text__description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat tincidunt augue. Cras gravida magna nibh, id pulvinar mi suscipit vel. Duis ultrices ut lorem eu ornare. Aenean ut mi at arcu blandit convallis vel a lacus. Cras tincidunt id tellus ultrices egestas. Suspendisse facilisis tempor sagittis. Donec ornare sodales sapien.
-        </p>
+        <p>{{travel.description}}</p>
       </div>
       <div class="travel__info__text__rating">
-        <span class="material-symbols-outlined service__card__icon">star</span>
-        <span class="material-symbols-outlined service__card__icon">star</span>
-        <span class="material-symbols-outlined service__card__icon">star</span>
-        <span class="material-symbols-outlined service__card__icon">star</span>
-        <span class="material-symbols-outlined service__card__icon">star</span>
+        <span v-for="s in travel.stars" :key="s" class="material-symbols-outlined service__card__icon">star</span> <span>/5</span>
+        
+        
       </div>
       <div class="travel__info__text__basic">
           <div class="travel__info__text__basic__wrap">
             <span class="material-symbols-outlined service__card__icon">hotel</span>
             <p class="bold">Hotel</p>
-            <p>Lorem Ipsum</p>
+            <p>{{travel.name}}</p>
           </div>
         <div class="travel__info__text__basic__wrap">
           <span class="material-symbols-outlined service__card__icon">calendar_month</span>
@@ -44,14 +41,9 @@
   </div>
   <div class="travel__package">
     <div class="travel__package__info">
-      <h1>Pacchetto</h1>
-      <div><p>Lorem Ipsum</p></div>
-      <div><p>Lorem ipsum dolor sit ametLorem Ipsum</p></div>
-      <div><p>Lorem ipsum dolor</p></div>
-      <div><p>Etiam placerat consequat ipsum</p></div>
-      <div><p>Integer rhoncus, quam porttitor congue sollicitudin </p></div>
-      <div><p>Suspendisse ultricies pharetra orci, ac imperdiet erat ultricies ut</p></div>
-      <div><p>Lorem ipsum dolor sit ametLorem Ipsum</p></div>
+      <h1>Caratteristiche</h1>
+      <div v-for="c in travel.experience.split('-')" :key="c"><p>{{c}}</p></div>
+ 
     </div>
     <div class="travel__package__img">
       <img src="../assets/italy.svg" alt="">
@@ -65,7 +57,6 @@
 
 <script>
 export default {
-
 props:{
         title:{
             type: String
@@ -80,6 +71,16 @@ props:{
             type: String
         }
     },
+    data(){
+      return{
+        characteristic:[]
+      }
+    },
+  computed:{
+    travel(){
+      return this.$store.state.travel
+    },
+  },
 }
 </script>
 
@@ -256,5 +257,8 @@ props:{
       height: 100%;
     }
   }
+}
+.prova{
+  background: red;
 }
 </style>

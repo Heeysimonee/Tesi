@@ -5,7 +5,7 @@
         <div class="more">
             <h1>{{title}}</h1>
             <div class="more__buy">
-                <button @click="goToDetails" class="more__buy__btn"> <span class="material-symbols-outlined service__card__icon">shopping_bag</span>DETTAGLI</button>
+                <button @click="goToDetails(this.travel)" class="more__buy__btn"> <span class="material-symbols-outlined service__card__icon">shopping_bag</span>DETTAGLI</button>
             </div>
         </div>
         <img class="img" :src="img" :alt="title">
@@ -36,7 +36,7 @@ export default {
         region: {
             type: String
         },
-        starts:{
+        stars:{
             type: Number
         },
         icon:{
@@ -50,6 +50,9 @@ export default {
         },
         price:{
             type: Number
+        },
+        travel: {
+            type: Object
         }
     },
     data(){
@@ -59,9 +62,12 @@ export default {
     },
    methods: {
 
-    goToDetails(){
+    goToDetails(travel){
         console.log(this.title)
-        this.$router.push({name: 'travel',  params: {}, props: true})        
+        console.log("viaggio:", travel)
+        this.$store.state.travel = travel
+        this.$router.push({name: 'travel',   props: true})    
+        //query: {title: this.title, description:this.description, region:this.region, stars:this.stars, img: this.img, duration: this.duration,price:this.price }    
     }
   },
   computed: {

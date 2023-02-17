@@ -27,7 +27,8 @@
     :icon="card.icon" 
     :img="card.image"
     :duration="card.duration"
-    :price="card.price"></destination-card>
+    :price="card.price"
+    :travel="card"></destination-card>
   </section>
 </template>
 
@@ -41,7 +42,6 @@ export default {
 
     const structures = await route.getStructureBasedOnVacation({"type": "sea"});
     if(structures.status === 200){
-      console.log(structures.data.data.result)
       this.structures = structures.data.data.result;
     }
   
