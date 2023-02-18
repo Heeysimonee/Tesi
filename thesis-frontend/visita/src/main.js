@@ -8,9 +8,10 @@ import store from './store';
 import 'material-design-icons/iconfont/material-icons.css'
 import { Quasar } from 'quasar'
 import quasarUserOptions from './quasar-user-options'
+import VueCookies from 'vue-cookies'
 
 
 library.add(fas);
-const app = createApp(App).use(Quasar, quasarUserOptions).use(Quasar, quasarUserOptions).use(store).use(router);
+const app = createApp(App).use(Quasar, quasarUserOptions).use(Quasar, quasarUserOptions).use(store).use(router).use(VueCookies);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');

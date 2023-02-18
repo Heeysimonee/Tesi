@@ -8,6 +8,9 @@ import LoginRegister from '@/views/LoginRegister.vue';
 import ProfileView from '@/views/ProfileView.vue'
 
 
+
+
+
 const routes = [
   {
     path: '/',
@@ -52,4 +55,26 @@ const router = createRouter({
   routes,
 });
 
+
+router.beforeEach((to, from, next)=>{
+  
+
+  // Get the encoded cookie value
+  const encodedCookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user\s*=\s*([^;]*).*$)|^.*$/, "$1")
+  
+  // Decode the cookie value
+  const cookieValue = decodeURIComponent(encodedCookieValue)
+  if(to.name === "loginRegister" && cookieValue){
+    next({
+      name: 'profile'
+    })
+  }
+  if(cookieValue){
+    next()
+  }
+  else{
+    next({name: 'home'})
+  }
+
+}) 
 export default router;

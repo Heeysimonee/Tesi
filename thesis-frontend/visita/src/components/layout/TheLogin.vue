@@ -50,6 +50,8 @@
 
 <script>
 import route from "@/api/index";
+
+
 export default {
     data(){
         return{
@@ -82,7 +84,9 @@ export default {
     async login(){
         console.log(this.pwd, this.email)
         const data = await route.userLogin({email: this.email, password: this.pwd})
-        console.log(data)
+        if(data.status === 200){
+            this.$cookies.set('user', data.data.data.result)
+        }
         
         
     }
