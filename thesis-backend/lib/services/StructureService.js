@@ -74,13 +74,14 @@ module.exports = class StructureService extends Schmervice.Service {
 
         /** Get user data */
         const user = await Users.query().where({ id: user_id }).first();
+        
         /* Getting all the users that have the same kids and pets as the user. */
         const others = await Users.query().whereNot({ id: user_id }).andWhere({ kids: user.kids }).andWhere({ pets: user.pets });
-
+ 
         /* Filtering out all the users that have the same vacation preferences as the user. */
         const similar = others
             .filter((single) => single.vacation_preferences.split('-').some((type) => user.vacation_preferences.split('-').includes(type)));
-
+            console.log(similar)
         /* Getting the top 5 regions of the user and filtering out the regions that are not in the top
         5 of the similar users. */
         const similar_region = user.top
@@ -88,6 +89,7 @@ module.exports = class StructureService extends Schmervice.Service {
             .splice(0, 5)
             .filter((region_id) => similar.some((other_client) => other_client.top.split('-').splice(0, 5).includes(region_id)));
         const all_structure = [];
+        console.log("sr:", similar_region)
         /* Getting all the structures that have been visited by the similar users. */
         await Promise.all(similar.map(async (u) => {
 

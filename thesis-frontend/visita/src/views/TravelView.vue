@@ -6,7 +6,7 @@
     </div>
     <div class="travel__info__text">
       <div class="travel__info__text__title-price">
-        <h1>{{travel.name}}</h1>
+        <h1 :style="{color: textColor}">{{travel.name}}</h1>
         <p>{{travel.price.toFixed(2)}}€</p>
       </div>
       <div class="travel__info__text__description">
@@ -52,6 +52,7 @@
   <div class="travel__map">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12221.038012253191!2d9.678926677368166!3d40.02498524045349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12de458559b57ddb%3A0x4cd548e8334ff693!2sCalette%20Sa%20Trempa%20&#39;e%20Su%20Lettu!5e0!3m2!1sit!2sit!4v1672354408216!5m2!1sit!2sit" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
+  
 </section>
 </template>
 
@@ -73,14 +74,19 @@ props:{
     },
     data(){
       return{
-        characteristic:[]
+        travelinfo: null
       }
     },
-  computed:{
-    travel(){
-      return this.$store.state.travel
-    },
+    computed:{
+      travel(){
+        return this.$store.getters.travelInfo
+      },
+    // textColor(){
+    //   return this.travelinfo.type === 'sea' ?'red' : 'blue'
+      
+    // }
   },
+
 }
 </script>
 

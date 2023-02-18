@@ -1,6 +1,6 @@
-email,password,nome,cognome ,genere,età,type_of_vacation,child,animals,top_region,visits_ac
-test1@gmail.com,password,Mimmo,Mu,uomo,16,"divertimento-relax",TRUE,TRUE,"1-2-3-4","1-3-4-5-6-7-8-9"
-test2@gmail.com,password,Pino,Insegno,donna,30,vacanza,FALSE,FALSE,"4-5-6-7-8","11-12-13-14-15-16-17-18-19"
-test3@gmail.com,password,Pom,Pom,uomo,44,relax,TRUE,FALSE,"1-2-9-10-11-13","11-12-13-14-15-26-27-28-29"
-test4@gmail.com,password,Franco,Fra,donna,58,divertimento,FALSE,TRUE,"2-5-14-15-16-17","1-2-3-4-5-6-17-18-19"
-test5@gmail.com,password,Albero,Bello,uomo,72,"divertimento-vacanza",TRUE,FALSE,"1-18-19-20","11-2-3-4-5-6-27-48-49"
+email,password,nome,cognome ,genere,età,type_of_vacation,child,animals,top_region,visited_ac
+test1@gmail.com,password,Mario,Rossi,uomo,16,divertimento-relax,0,1,3-4-13-14-15,81-4-31-34-19-60
+test2@gmail.com,password,Bianca,Rossi,donna,30,vacanza-divertimento-relax,0,1,14-15-3-19-7,99-81-8-6
+test3@gmail.com,password,Alessio,Verdi,uomo,44,relax,0,1,9-10-16-13-7,100-10-45-93-92
+test4@gmail.com,password,Francesca,Verdi,donna,58,divertimento,0,1,14-15-16-17-1,19-99-3-61-83
+test5@gmail.com,password,Luigi,Colombo,uomo,72,divertimento-vacanza,0,1,3-19-20-6,81-8-51-68-72

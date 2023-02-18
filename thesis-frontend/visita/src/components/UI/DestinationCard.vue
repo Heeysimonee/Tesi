@@ -64,10 +64,8 @@ export default {
 
     goToDetails(travel){
         console.log(this.title)
-        console.log("viaggio:", travel)
         this.$store.state.travel = travel
         this.$router.push({name: 'travel',   props: true})    
-        //query: {title: this.title, description:this.description, region:this.region, stars:this.stars, img: this.img, duration: this.duration,price:this.price }    
     }
   },
   computed: {
@@ -88,7 +86,7 @@ export default {
     cursor: pointer;
     
     &:hover .card__title{
-        color: transparent;
+        display: none;
     }
     &:hover .card__darker{
         opacity: 0;
@@ -209,7 +207,7 @@ export default {
         transition: all .3s ease-in-out;
         >h1{
             color: white;
-            font-size: 5rem;
+            font-size: 3rem;
             font-weight: 200;
         }
         .material-symbols-outlined {

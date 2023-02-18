@@ -22,6 +22,7 @@ module.exports = createRoute({
             gender: Joi.string().default('uomo').allow(null),
             age: Joi.number().default(18).allow(null),
             vacation_preferences: Joi.string().default('no').allow(null),
+            visited: Joi.string().default('no').allow(null), //TODO: lalal
             kids: Joi.bool().default(false).allow(null),
             pets: Joi.bool().default(false).allow(null)
         })

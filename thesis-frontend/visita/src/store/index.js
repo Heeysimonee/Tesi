@@ -3,11 +3,14 @@ import { createStore } from "vuex";
 export default createStore({
   state() {
     return{
-      counter: 0,
       travel: {}
     }
   },
-  getters: {},
+  getters: {
+    travelInfo(state){
+      return state.travel
+    }
+  },
   mutations: {},
   actions: {},
   modules: {},

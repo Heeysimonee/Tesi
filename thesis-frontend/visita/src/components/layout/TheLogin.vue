@@ -8,11 +8,11 @@
         <form >
             <div class="login__form__input">
                 <label for="Email">Email</label>
-                <input type="email" name="email" placeholder="E-mail">
+                <input type="email" name="email" placeholder="E-mail" v-model="email">
             </div>
             <div class="login__form__input">
                 <label for="Password">Password</label>
-                <input :type="inputType" name="password" placeholder="Password">
+                <input :type="inputType" name="password" placeholder="Password" v-model="pwd">
                 <div class="login__form__input__pwd-icon">
                     <span @click="modifyPswVisibility" class="material-symbols-outlined">{{pswIcon}}</span>
                 </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="login__form__btn">
                 <div class="login__form__btn__login">
-                    <button type="submit">LOGIN</button>
+                    <button @click.prevent="login" type="submit">LOGIN</button >
                 </div>
                 <div class="login__form__btn__recovery">
                     <p>Password dimenticata?</p>
@@ -49,12 +49,15 @@
 </template>
 
 <script>
+import route from "@/api/index";
 export default {
     data(){
         return{
             checked: false,
             inputType: 'password',
             pswIcon: 'visibility',
+            email: null,
+            pwd: null,
 
         }
     },
@@ -75,6 +78,13 @@ export default {
     },
     changeComponent(){
         this.$emit('changeTag','the-registration')
+    },
+    async login(){
+        console.log(this.pwd, this.email)
+        const data = await route.userLogin({email: this.email, password: this.pwd})
+        console.log(data)
+        
+        
     }
   },
 

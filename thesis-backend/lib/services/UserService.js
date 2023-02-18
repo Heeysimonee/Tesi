@@ -119,13 +119,13 @@ module.exports = class UserService extends Schmervice.Service {
         const result = await Users.query().where({ email }).andWhere({ password });
         /* Checking if the result of the query is an empty array. If it is, it returns false, otherwise
         it returns true. */
-        return Boolean(result.length);
+        return result[0] || {};
     }
 
     /**
      * It updates a user's information in the database
      */
-    async updateUser({ id, name, surname, gender, age, vacation_preferences, kids, pets }) {
+    async updateUser({ id, name, surname, gender, age, vacation_preferences, visited, kids, pets }) {
 
         const { Users } = this.server.models();
 
@@ -138,6 +138,7 @@ module.exports = class UserService extends Schmervice.Service {
         user.gender = gender;
         user.age = age;
         user.vacation_preferences = vacation_preferences;
+        user.visited = visited
         user.kids = kids;
         user.pets = pets;
 
