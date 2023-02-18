@@ -58,7 +58,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
   
-
   // Get the encoded cookie value
   const encodedCookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user\s*=\s*([^;]*).*$)|^.*$/, "$1")
   
@@ -69,11 +68,8 @@ router.beforeEach((to, from, next)=>{
       name: 'profile'
     })
   }
-  if(cookieValue){
-    next()
-  }
   else{
-    next({name: 'home'})
+      next()
   }
 
 }) 

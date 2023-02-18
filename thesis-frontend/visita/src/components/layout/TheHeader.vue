@@ -1,5 +1,5 @@
 <template>
-  <div class="header__wrap">
+  <div v-if="$route.name !== 'profile'" class="header__wrap">
     <div class="header__wrap__logo" :style="{color: isTravelView}"><h1>Visita</h1></div>
     <nav class="header__wrap__menu">
       <p :style="{color: isTravelViewP}"

@@ -127,6 +127,10 @@ export default {
         {region: 'Calabria', date: '02 Luglio - 18 Luglio'},
       ],
     }
+  },
+  beforeCreate(){
+    const user = this.$cookies.get('user');
+    console.log('aaaaaaaaaaaaaaaaaaaaaaa', user)
   }
   
 
